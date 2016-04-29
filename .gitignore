@@ -1,7 +1,11 @@
 # Dependency directories
 node_modules
-# # Optional npm cache directory
-.npm
+
+# Optional npm cache directory
+*.npm
+
+# log files
+*.log
 
 # build files
 public
