@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import path from 'path';
 import webpack from 'webpack';
 
@@ -26,10 +25,6 @@ export default {
     path: path.join(__dirname, "/public"),
     filename: "server.js"
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
-
   module: {
     loaders: [
       {

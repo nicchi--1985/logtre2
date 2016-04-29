@@ -1,7 +1,6 @@
 import express from 'express'
 const app = express()
 
-
 app.get('/', function(req, res) {
   console.log('got request')
   res.send(`<html><body>Hello world</body></html>`);
