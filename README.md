@@ -8,7 +8,7 @@ git clone https://github.com/nicchi--1985/logtre2.git
 npm install
 
 ### build
-npm build
+npm run build
 
 ### start server
 npm start
