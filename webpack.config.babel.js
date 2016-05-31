@@ -20,7 +20,7 @@ export default {
     cachedAssets: VERBOSE,
   },
   target: "node",
-  entry: path.join(__dirname, "/src/server.jsx"),
+  entry: path.join(__dirname, "/src/server.js"),
   output: {
     path: path.join(__dirname, "/public"),
     filename: "server.js"
@@ -28,7 +28,7 @@ export default {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader'
       },
@@ -41,5 +41,11 @@ export default {
   node: {
     fs: "empty",
     net: "empty"
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      'Promise': 'ex6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!isomorphic-fetch'
+    })
+  ]
 };
