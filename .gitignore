@@ -10,3 +10,5 @@ node_modules
 # build files
 public
 
+.DS_store
+
