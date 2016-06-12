@@ -2,18 +2,16 @@ import path from 'path'
 import express from 'express'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { match, RouterContext } from 'react-router'
-import reducer from './reducers'
+import { configurateStore } from './store'
 import App from './containers/App'
 import routes from './routes'
 
 const app = express()
 const port = 9001
 
-console.log(path.join(__dirname, 'public'))
-app.use(express.static('public'))
+app.use('/static', express.static(path.join(process.cwd(), 'public')))
 
 function renderFullPage(html, preloadedState=null) {
   return(`
@@ -31,7 +29,7 @@ function renderFullPage(html, preloadedState=null) {
       </head>
       <body>
         <div id="root">${html}</div>
-        <script src='client/bundle.js'></script>
+        <script type="text/javascript" src='/static/bundle.js'></script>
       </body>
     </html>`
   )
@@ -40,16 +38,17 @@ function renderFullPage(html, preloadedState=null) {
 app.get('*', (req, res, next) => {
   console.log("start handling req...")
   match({routes, location:req.url}, (error, redirectLocation, renderProps) => {
-    console.log(renderProps)
     if (error) {
       res.status(500).send(error.message)
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
-      const store = createStore(reducer)
+      const store = configurateStore()
       const html = renderToString(<Provider store={store}><RouterContext {...renderProps} /></Provider>)
       res.status(200).send(renderFullPage(html))
     } else {
+      console.log('not found')
+      console.log(req.url)
       res.status(404).send('Not found')
     }
   })

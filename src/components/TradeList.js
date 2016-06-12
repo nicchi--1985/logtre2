@@ -3,16 +3,24 @@ import React, { Component } from 'react'
 export default class TradeList extends Component {
     // this.props.
     render() {
-        console.log('start rendering TradeList')
-        console.log(this.props)
-        const sample_trades = [{id:"1",name:"first"},{id:"2",name:"second"},{id:"3",name:"third"}]
-        const elements = sample_trades.map(trade => {
-            <li key=`trade_id_{trade.id}`>{trade.name}</li>
+        console.log("TradesList")
+        console.log(this.props.trades)
+        const trades = this.props.trades
+        const elements = trades.map((trade) => {
+            const key = "trade_id_" + trade.id
+            return (
+                <tr key={key}>
+                    <td>{trade.brand_name}</td>
+                    <td>{trade.gain_loss_amount}円</td>
+                </tr>
+            )
         })
         return (
-            <ol>
-            {elements}
-            </ol>
+            <table>
+                <tbody>
+                    {elements}
+                </tbody>
+            </table>
         )
     }
 }
