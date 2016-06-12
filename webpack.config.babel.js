@@ -23,7 +23,7 @@ export default {
   entry: path.join(__dirname, "/src/server.js"),
   output: {
     path: path.join(__dirname, "/"),
-    filename: "server.js"
+    filename: "bundle-server.js"
   },
   module: {
     loaders: [
