@@ -1,7 +1,7 @@
 // サーバから取引データを取得
 export function fetchTrades() {
     return (dispatch) => {
-        return fetch("http://local.logtre.com:8082/api/trades/index")
+        return fetch("http://local.logtre.com/api/trades/index")
         .then(res => res.json())
         .then(json => {
             console.log("response received!!")
@@ -24,3 +24,35 @@ export function receiveTrades(data) {
 /* 取引データを取得してstateに加える
 fetch(http://api/trades).then(res=>dispatch(receiveTrades(res)))
 */
+
+// facebookAuth
+export function authWithFacebook() {
+    return (dispatch) => {
+        const config = {}
+        return fetch("http://local.logtre.com/auth/facebook", config)
+        .then(res => {
+            console.log("got response for fbAuth")
+            console.log(res)
+            console.log(res.json())
+            return res.json()
+        })
+        .then(token => {
+            console.log(token)
+            dispatch(storeToken(token))
+        }).catch(err => console.log(err))
+    }
+}
+
+export function storeToken(token) {
+    return {
+        type: "STORE_TOKEN",
+        token: token
+    }
+}
+
+export function successAuthentication(token) {
+    return {
+        type: "AUTH_SUCCEEDED",
+        token: token
+    }
+}

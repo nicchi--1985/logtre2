@@ -9,6 +9,7 @@ class App extends Component {
     console.log("App")
     console.log(this.props.actions)
     console.log(this.props.trades)
+    // pass this.props to children
     const childrenWithProps = React.cloneElement(this.props.children, {...this.props})
     return(
       <div className="contents">

@@ -1,4 +1,10 @@
-const initial_state = {trades: [{id:"1",name:"first"},{id:"2",name:"second"},{id:"3",name:"third"}]}
+const initial_state = {
+  trades: [{id:"1",name:"first"},{id:"2",name:"second"},{id:"3",name:"third"}],
+  auth: {
+    token: "",
+    username: ""
+  }
+}
 
 export default function reducer(state=initial_state, action) {
   switch (action.type) {
