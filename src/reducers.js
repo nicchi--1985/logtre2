@@ -9,12 +9,15 @@ const initial_state = {
 export default function reducer(state=initial_state, action) {
   switch (action.type) {
     case 'RECEIVE_TRADES':
-      const new_state = Object.assign(
-        {}, 
-        state,
-        {trades: action.payload}
-      )
-      return new_state
+      return Object.assign({}, state, {
+        trades: action.payload
+      })
+     case 'AUTH_SUCCEEDED':
+      console.log('storing token');
+      const newstate = Object.assign({}, state, {
+        auth: {token: action.token, username: ""}
+      })
+      return newstate
     default:
       return state
   }

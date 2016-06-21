@@ -44,7 +44,7 @@ export default {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      'Promise': 'ex6-promise',
+      'Promise': 'es6-promise',
       'fetch': 'imports?this=>global!exports?global.fetch!isomorphic-fetch'
     })
   ]

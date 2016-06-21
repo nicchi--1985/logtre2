@@ -1,22 +1,29 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { authWithFacebook } from '../actions/actions'
+import { successAuthentication } from '../actions/actions'
 
 class GuestOnly extends Component {
     componentWillMount() {
-        this.checkAuth();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.checkAuth();
+        this.checkAuth(this.props);
     }
     
-    checkAuth() {
-        if (this.props.isAuthenticated) {
-            console.log(this.props);
-            console.log(this.props.router)
-            this.props.history.pushState(null, "/")
+    componentWillReceiveProps(nextProps) {
+        this.checkAuth(nextProps);
+    }
+    
+    checkAuth(props) {
+        if (props.isAuthenticated) {
+            console.log(props.isAuthenticated)
+            console.log("already authenticated");
+            console.log(this.context.router)
+            this.context.router.replace("/top");
+        } else if (props.location.query.token) {
+            // FIXME:should check more strict
+            console.log(props.isAuthenticated)
+            console.log("authenticated just now");
+            const token = props.location.query.token;
+            props.successAuthentication(token);
         }
     }
     
@@ -31,6 +38,10 @@ class GuestOnly extends Component {
     }
 }
 
+GuestOnly.contextTypes = {
+        router: React.PropTypes.object.isRequired
+};
+
 function mapStateToPorps(state) {
     return {
         isAuthenticated: state.auth.token
@@ -39,7 +50,7 @@ function mapStateToPorps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        authWithFacebook: ()=>authWithFacebook()
+        successAuthentication: (token)=> dispatch(successAuthentication(token))
     }
 }
 
