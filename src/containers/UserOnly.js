@@ -1,27 +1,36 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../actions/actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import cookie from 'react-cookie';
+import * as Actions from '../actions/actions';
 
 class UserOnly extends Component {
     componentWillMount() {
+        console.log("user will mount");
+        console.log(this.props.isAuthenticated);
+        console.log(this.props);
         this.checkAuth(this.props);
     }
     
     componentWillReceiveProps(nextProps) {
+        console.log("user will receive props");
         this.checkAuth(nextProps);
     }
     
     checkAuth(props) {
-        if (!props.isAuthenticated) {
-            console.log(this.context)
-            console.log(props.isAuthenticated)
+        if (!props.isAuthenticated && cookie.load('token')) {
+            console.log('dispath successAuth action');
+            props.actions.successAuthentication(cookie.load('token'));
+        } else if (!props.isAuthenticated) {
             console.log("redirecting to login");
-            this.context.router.replace("/login")
+            this.context.router.push('/login');
+        } else {
+            console.log("already Authenticate");
         }
     }
         
     render() {
+        console.log('rendering UserOnly');
         return (
             <div>
                 <h4>UserOnly</h4>

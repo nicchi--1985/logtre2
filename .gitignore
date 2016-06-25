@@ -12,4 +12,5 @@ public
 bundle-server.js
 
 .DS_store
+jsconfig.json
 

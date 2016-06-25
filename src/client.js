@@ -7,8 +7,9 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import routes from './routes'
 
-const store = configurateStore()
-
+const preloadedState = window.__PRELOADED_STATE__;
+const store = configurateStore(preloadedState);
+console.log('rendering client');
 render(
   <Provider store={store}>
     <Router history={browserHistory}>

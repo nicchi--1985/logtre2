@@ -1,9 +1,6 @@
 const initial_state = {
   trades: [{id:"1",name:"first"},{id:"2",name:"second"},{id:"3",name:"third"}],
-  auth: {
-    token: "",
-    username: ""
-  }
+  auth: {token: null, username: null}
 }
 
 export default function reducer(state=initial_state, action) {
@@ -15,7 +12,7 @@ export default function reducer(state=initial_state, action) {
      case 'AUTH_SUCCEEDED':
       console.log('storing token');
       const newstate = Object.assign({}, state, {
-        auth: {token: action.token, username: ""}
+        auth: {token: action.token, username: "success"}
       })
       return newstate
     default:

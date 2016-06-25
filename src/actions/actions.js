@@ -1,7 +1,10 @@
+import cookie from 'react-cookie'
+import { base_host } from '../routes'
+
 // サーバから取引データを取得
-export function fetchTrades() {
+export function fetchTrades(url) {
     return (dispatch) => {
-        return fetch("http://local.logtre.com/api/trades/index")
+        return fetch(url)
         .then(res => res.json())
         .then(json => {
             console.log("response received!!")
@@ -26,10 +29,10 @@ fetch(http://api/trades).then(res=>dispatch(receiveTrades(res)))
 */
 
 // facebookAuth
-export function authWithFacebook() {
+export function authWithFacebook(url) {
     return (dispatch) => {
         const config = {}
-        return fetch("http://local.logtre.com/auth/facebook", config)
+        return fetch(url, config)
         .then(res => {
             console.log("got response for fbAuth")
             console.log(res)
@@ -45,7 +48,7 @@ export function authWithFacebook() {
 
 export function storeToken(token) {
     return {
-        type: "STORE_TOKEN",
+        type: "AUTH_SUCCEEDED",
         token: token
     }
 }

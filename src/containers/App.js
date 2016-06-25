@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 
 export default class App extends Component {
   render() {
-    console.log("App")
-    console.log(this.props)
+    console.log("rendering App");
     // pass this.props to children
     return(
       <div className="contents">

@@ -25,6 +25,7 @@ export default {
     path: path.join(__dirname, "/"),
     filename: "bundle-server.js"
   },
+  devtool: 'inline-source-map',
   module: {
     loaders: [
       {
