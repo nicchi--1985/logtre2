@@ -72,7 +72,7 @@ export function successAuthentication(token) {
             }
         }
         console.log('going to fetch user info');
-        return fetch('http://local.logtre.com:8888/api/me', fetch_cfg)
+        return fetch('http://app.logtre.com/api/me', fetch_cfg)
                 .then((res) => {
                     return res.json();
                 })
