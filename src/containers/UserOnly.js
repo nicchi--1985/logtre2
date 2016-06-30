@@ -29,9 +29,11 @@ class UserOnly extends Component {
         
     render() {
         console.log('rendering UserOnly');
+        const user_msg = this.props.currentUser ? `welcome ${this.props.currentUser.name}` : ''
         return (
             <div>
                 <h4>UserOnly</h4>
+                <p>{user_msg}</p>
                 {this.props.children}
             </div>
         )
@@ -44,7 +46,8 @@ UserOnly.contextTypes = {
 
 function mapStateToPorps(state) {
     return {
-        isAuthenticated: state.auth.token
+        isAuthenticated: state.auth.token,
+        currentUser: state.user
     }
 }
 

@@ -46,16 +46,42 @@ export function authWithFacebook(url) {
     }
 }
 
-export function storeToken(token) {
+function storeToken(token) {
     return {
-        type: "AUTH_SUCCEEDED",
+        type: "SET_TOKEN",
         token: token
     }
 }
 
-export function successAuthentication(token) {
+function storeUser(user) {
     return {
-        type: "AUTH_SUCCEEDED",
-        token: token
+        type: "SET_USER",
+        payload: user
+    }
+}
+
+export function successAuthentication(token) {
+    return (dispatch) => {
+        dispatch(storeToken(token));
+        const fetch_cfg = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }
+        console.log('going to fetch user info');
+        return fetch('http://local.logtre.com:8888/api/me', fetch_cfg)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((user) => {
+                    dispatch(storeUser(user));
+                })
+                .catch((err) => {
+                    console.log('error occured');
+                    console.log(err);
+                })
     }
 }
