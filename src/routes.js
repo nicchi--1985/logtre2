@@ -5,6 +5,7 @@ import TopPage from './containers/pages/TopPage'
 import ChartListPage from './containers/pages/ChartListPage'
 import ChartPage from './containers/pages/ChartPage'
 import AnalyticsPage from './containers/pages/AnalyticsPage'
+import SettingPage from './containers/pages/SettingPage'
 import TradesPage from './containers/pages/TradesPage'
 import LoginPage from './containers/pages/LoginPage'
 import UserOnly from './containers/UserOnly'
@@ -18,6 +19,7 @@ export default (
         <Route path="/charts" component={ChartListPage} />
         <Route path="/chart/:product_id" component={ChartPage} />
         <Route path="/analytics" component={AnalyticsPage} />
+        <Route path="/setting" component={SettingPage} />
         <Route path="/dev/trades" component={TradesPage} />
       </Route>
      </Route>

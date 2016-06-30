@@ -9,7 +9,7 @@ export default function reducer(state=initial_state, action) {
       return Object.assign({}, state, {
         trades: action.payload
       })
-     case 'AUTH_SUCCEEDED':
+    case 'AUTH_SUCCEEDED':
       console.log('storing token');
       const newstate = Object.assign({}, state, {
         auth: {token: action.token, username: "success"}

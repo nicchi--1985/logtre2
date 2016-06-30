@@ -12,6 +12,7 @@ export default class App extends Component {
         <li><Link to="/charts">CHARTS</Link></li>
         <li><Link to="/chart/1">CHART</Link></li>
         <li><Link to="/analytics">ANALYTICS</Link></li>
+        <li><Link to="/setting">SETTING</Link></li>
         <li><Link to="/dev/trades">TRADES(DEV)</Link></li>
         {this.props.children}
       </div>

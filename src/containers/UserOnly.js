@@ -7,8 +7,6 @@ import * as Actions from '../actions/actions';
 class UserOnly extends Component {
     componentWillMount() {
         console.log("user will mount");
-        console.log(this.props.isAuthenticated);
-        console.log(this.props);
         this.checkAuth(this.props);
     }
     

@@ -9,8 +9,6 @@ export default class TradesPage extends Component {
     
     render() {
         console.log("TradePage")
-        console.log(this.props.actions)
-        console.log(this.props.trades)
         return (
             <div>
                 <h1>trade history</h1>
