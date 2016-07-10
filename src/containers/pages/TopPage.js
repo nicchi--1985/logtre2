@@ -7,6 +7,7 @@ import PerformanceSummary from '../../components/PerformanceSummary'
 
 class TopPage extends Component {
     componentWillMount() {
+        this.props.actions.getBrokers();
         this.props.actions.getSummary();
     }
     
@@ -14,7 +15,7 @@ class TopPage extends Component {
         return (
             <div>
                 <h4>Welcome to Logtre!!</h4>
-                <StockCompanyList />
+                <StockCompanyList brokers={this.props.brokers}/>
                 <PerformanceSummary summary={this.props.performanceSummary}/>
             </div>
         )
@@ -23,7 +24,8 @@ class TopPage extends Component {
 
 function mapStateToPorps(state) {
     return {
-        performanceSummary: state.performanceSummary
+        performanceSummary: state.performanceSummary,
+        brokers: state.brokers
     }
 }
 

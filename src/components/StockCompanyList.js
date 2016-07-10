@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 
-// 後でapi responseと入れ替える
-const comp_json = [
-    {"id":"1","name":"SBI証券"},
-    {"id":"2","name":"楽天証券"}
-]
-
 export default class StockCompanyList extends Component {
+    constructor(props) {
+        super(props);
+        this.render = this.render.bind(this);
+    }
     render_list(data) {
         return data.map((comp)=>{
-            return <li key={comp.id}>{comp.name}</li>
+            return <li key={comp.id}>{comp.disp_name}</li>
         })
     }
     
     render() {
-        const company = this.render_list(comp_json); 
+        const company = this.render_list(this.props.brokers); 
         return (
             <div>
                 <h5>証券会社一覧</h5>

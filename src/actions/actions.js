@@ -136,3 +136,33 @@ export function getSummary() {
                 })
     }
 }
+
+function receiveBrokers(brokers) {
+    return {
+        type: "RECEIVE_BROKERS",
+        brokers: brokers
+    }
+}
+
+export function getBrokers() {
+    return (dispatch, getState) => {
+        // do something
+        const { auth } = getState();
+        const fetch_cfg = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + auth.token
+            }
+        }
+        return fetch(`${apiHost}/api/trades/brokers`, fetch_cfg)
+                .then( (res) => {
+                    if (res.status == 200) {
+                        return res.json();
+                    } else {
+                        console.log("error occured geting summary");
+                    }
+                }).then( (brokers) => {
+                    dispatch(receiveBrokers(brokers));
+                })
+    }
+}
