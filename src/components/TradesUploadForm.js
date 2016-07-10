@@ -10,25 +10,19 @@ export default class TradesUploadForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     stockCompChange(e) {
-        console.log("stockCompChanged to:");
         this.stockComp = e.target.value;
     }
     
     fileChange(e) {
-        console.log("file Changed");
         this.upFile = e.target.files[0];
     }
     
     handleSubmit(e) {
         e.preventDefault();
-        console.log("submited");
         const body = {
             stockComp: this.stockComp,
             upFile: this.upFile
         }
-        console.log(this.props.uploadCSVFile);
-        console.log(this);
-        console.log(body);
         this.props.uploadCSVFile(body);
     }
     

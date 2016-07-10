@@ -9,8 +9,6 @@ export function fetchTrades(url) {
         return fetch(url)
         .then(res => res.json())
         .then(json => {
-            console.log("response received!!")
-            console.log(json)
             dispatch(receiveTrades(json))
         }).catch((err) => {
             console.log(err.message)
@@ -37,12 +35,9 @@ export function authWithFacebook(url) {
         return fetch(url, config)
         .then(res => {
             console.log("got response for fbAuth")
-            console.log(res)
-            console.log(res.json())
             return res.json()
         })
         .then(token => {
-            console.log(token)
             dispatch(storeToken(token))
         }).catch(err => console.log(err))
     }
@@ -90,12 +85,10 @@ export function successAuthentication(token) {
 
 export function uploadCSVFile(payload) {
     return (dispatch, getState) => {
-        console.log("going to upload csv file!!!!");
         const { auth } = getState();
         const body = new FormData();
         body.append("stockComp", payload.stockComp);
         body.append("file", payload.upFile, payload.upFile.name);
-        console.log(body);
         const fetch_cfg = {
             method: 'POST',
             headers: {

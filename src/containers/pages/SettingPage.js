@@ -5,18 +5,11 @@ import { uploadCSVFile } from '../../actions/actions'
 
 class SettingPage extends Component {
     render() {
-        console.log('setting page');
         return (
             <div>
                 <TradesUploadForm uploadCSVFile={this.props.uploadCSVFile}/>
             </div>
         )
-    }
-}
-
-function mapStateToPorps(state) {
-    return {
-        locationOrigin: state.locationOrigin
     }
 }
 
@@ -26,4 +19,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToPorps, mapDispatchToProps)(SettingPage)
+export default connect(null, mapDispatchToProps)(SettingPage)
