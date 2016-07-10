@@ -1,6 +1,8 @@
 import cookie from 'react-cookie'
 import { base_host } from '../routes'
 
+const apiHost = "http://local.logtre.com:8888"
+
 // サーバから取引データを取得
 export function fetchTrades(url) {
     return (dispatch) => {
@@ -72,7 +74,7 @@ export function successAuthentication(token) {
             }
         }
         console.log('going to fetch user info');
-        return fetch('http://app.logtre.com/api/me', fetch_cfg)
+        return fetch(`${apiHost}/api/me`, fetch_cfg)
                 .then((res) => {
                     return res.json();
                 })
@@ -82,6 +84,32 @@ export function successAuthentication(token) {
                 .catch((err) => {
                     console.log('error occured');
                     console.log(err);
+                })
+    }
+}
+
+export function uploadCSVFile(payload) {
+    return (dispatch, getState) => {
+        console.log("going to upload csv file!!!!");
+        const { auth } = getState();
+        const body = new FormData();
+        body.append("stockComp", payload.stockComp);
+        body.append("file", payload.upFile, payload.upFile.name);
+        console.log(body);
+        const fetch_cfg = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + auth.token
+            },
+            body: body
+        }
+        return fetch(`${apiHost}/api/import`, fetch_cfg)
+                .then((res) => {
+                    if (res.status == "200") {
+                        console.log("upload success");
+                    } else {
+                        console.log("error occured uploading file")
+                    }
                 })
     }
 }

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import TradesUploadForm from '../../components/TradesUploadForm'
+import { uploadCSVFile } from '../../actions/actions'
 
 class SettingPage extends Component {
     render() {
         console.log('setting page');
         return (
             <div>
-                <TradesUploadForm locationOrigin={this.props.locationOrigin}/>
+                <TradesUploadForm uploadCSVFile={this.props.uploadCSVFile}/>
             </div>
         )
     }
@@ -19,4 +20,10 @@ function mapStateToPorps(state) {
     }
 }
 
-export default connect(mapStateToPorps, null)(SettingPage)
+function mapDispatchToProps(dispatch) {
+    return {
+        uploadCSVFile: (payload) => dispatch(uploadCSVFile(payload))
+    }
+}
+
+export default connect(mapStateToPorps, mapDispatchToProps)(SettingPage)
