@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 export default class StockCompanyList extends Component {
     constructor(props) {
@@ -7,7 +8,7 @@ export default class StockCompanyList extends Component {
     }
     render_list(data) {
         return data.map((comp)=>{
-            return <li key={comp.id}>{comp.disp_name}</li>
+            return <Link to={ "/charts/" + comp.name } key={comp.id}>{comp.disp_name}</Link>
         })
     }
     

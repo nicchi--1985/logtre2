@@ -1,7 +1,7 @@
 import cookie from 'react-cookie'
 import { base_host } from '../routes'
 
-const apiHost = "http://app.logtre.com"
+const apiHost = "http://local.logtre.com:8888"
 
 // サーバから取引データを取得
 export function fetchTrades(url) {
@@ -23,10 +23,6 @@ export function receiveTrades(data) {
         payload: data
     }
 }
-
-/* 取引データを取得してstateに加える
-fetch(http://api/trades).then(res=>dispatch(receiveTrades(res)))
-*/
 
 // facebookAuth
 export function authWithFacebook(url) {
@@ -154,6 +150,7 @@ export function getBrokers() {
                 'Authorization': 'Bearer ' + auth.token
             }
         }
+        console.log("start fetching brokers")
         return fetch(`${apiHost}/api/trades/brokers`, fetch_cfg)
                 .then( (res) => {
                     if (res.status == 200) {
@@ -162,6 +159,7 @@ export function getBrokers() {
                         console.log("error occured geting summary");
                     }
                 }).then( (brokers) => {
+                    console.log(brokers);
                     dispatch(receiveBrokers(brokers));
                 })
     }
