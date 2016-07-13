@@ -33,7 +33,7 @@ export default class TradesUploadForm extends Component {
                 <label htmlFor="stock_company">証券会社</label>
                 <select id="stock_company" onChange={this.stockCompChange}>
                     <option value="">証券会社を選択して下さい</option>
-                    <option value="0">SBI証券</option>
+                    <option value="sbi">SBI証券</option>
                 </select>
                 <input type="file" name="file" onChange={this.fileChange}/>
                 <input type="submit" value="アップロード" />

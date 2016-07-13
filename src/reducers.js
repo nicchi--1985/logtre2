@@ -2,7 +2,8 @@ const initial_state = {
   trades: [{id:"1",name:"first"},{id:"2",name:"second"},{id:"3",name:"third"}],
   auth: {token: null, username: null},
   performanceSummary: {gain_loss: null, roi: null, trade_count: null},
-  brokers: []
+  brokers: [],
+  products: []
 }
 
 export default function reducer(state=initial_state, action) {
@@ -31,6 +32,10 @@ export default function reducer(state=initial_state, action) {
     case "RECEIVE_BROKERS":
       return Object.assign({}, state, {
         brokers: action.brokers
+      })
+    case "RECEIVE_PRODUCTS":
+      return Object.assign({}, state, {
+        products: action.products
       })
     default:
       return state

@@ -1,7 +1,7 @@
 import cookie from 'react-cookie'
 import { base_host } from '../routes'
 
-const apiHost = "http://local.logtre.com:8888"
+const apiHost = "http://app.logtre.com"
 
 // サーバから取引データを取得
 export function fetchTrades(url) {
@@ -83,7 +83,7 @@ export function uploadCSVFile(payload) {
     return (dispatch, getState) => {
         const { auth } = getState();
         const body = new FormData();
-        body.append("stockComp", payload.stockComp);
+        body.append("broker", payload.stockComp);
         body.append("file", payload.upFile, payload.upFile.name);
         const fetch_cfg = {
             method: 'POST',
@@ -161,6 +161,37 @@ export function getBrokers() {
                 }).then( (brokers) => {
                     console.log(brokers);
                     dispatch(receiveBrokers(brokers));
+                })
+    }
+}
+
+function receiveProducts(products) {
+    return {
+        type: "RECEIVE_PRODUCTS",
+        products: products
+    }
+}
+
+export function getProducts(broker) {
+    return (dispatch, getState) => {
+        // do something
+        const { auth } = getState();
+        const fetch_cfg = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + auth.token
+            }
+        }
+        console.log("start fetching products")
+        return fetch(`${apiHost}/api/products/${broker}`, fetch_cfg)
+                .then( (res) => {
+                    if (res.status == 200) {
+                        return res.json();
+                    } else {
+                        console.log("error occured geting products");
+                    }
+                }).then( (products) => {
+                    dispatch(receiveProducts(products));
                 })
     }
 }

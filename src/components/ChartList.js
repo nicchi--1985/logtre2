@@ -1,33 +1,21 @@
 import React, { Component } from 'react'
-
-// 後でapi responseと入れ替える
-const charts_json = [
-    {
-        "id":"1",
-        "product_name":"日経平均先物",
-        "total_gain_loss": "+40,000円"
-    },
-    {
-        "id":"2",
-        "product_name":"225オプション プット",
-        "total_gain_loss": "-2,000円"
-    },
-    {
-        "id":"3",
-        "product_name":"225オプション コール",
-        "total_gain_loss": "+80,000円"
-    }
-]
+import { Link } from 'react-router'
 
 export default class ChartList extends Component {
+    constructor(props) {
+        super(props);
+        this.render = this.render.bind(this)
+        this.render_list = this.render_list.bind(this)
+    }
+
     render_list(data) {
-        return data.map((chart)=>{
-            return <li key={chart.id}>{chart.product_name}　損益　{chart.total_gain_loss}</li>
+        return data.map((product, i)=>{
+            return <li><Link to={ `/charts/${this.props.broker}/${product.name}` } key={i}>{product.disp_name}　損益　{product.gain_loss_total}</Link></li>
         })
     }
     
     render() {
-        const charts = this.render_list(charts_json); 
+        const charts = this.render_list(this.props.products); 
         return (
             <div>
                 <h5>チャート一覧</h5>

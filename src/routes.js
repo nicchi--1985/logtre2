@@ -17,7 +17,7 @@ export default (
       <Route path="/top" component={App}>
         <IndexRoute component={TopPage} />
         <Route path="/charts/:broker" component={ChartListPage} />
-        <Route path="/chart/:product_id" component={ChartPage} />
+        <Route path="/charts/:broker/:product_no" component={ChartPage} />
         <Route path="/analytics" component={AnalyticsPage} />
         <Route path="/setting" component={SettingPage} />
         <Route path="/dev/trades" component={TradesPage} />
