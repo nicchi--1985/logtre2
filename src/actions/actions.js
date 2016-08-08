@@ -195,3 +195,65 @@ export function getProducts(broker) {
                 })
     }
 }
+
+function receiveChartData(data) {
+    return {
+        type: "RECEIVE_CHARTDATA",
+        payload: data
+    }
+}
+
+export function getChartData(broker, product) {
+    return (dispatch, getState) => {
+        // do something
+        const { auth } = getState();
+        const fetch_cfg = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + auth.token
+            }
+        }
+        console.log(`start fetching chart data for ${broker}/${product}`)
+        return fetch(`${apiHost}/api/trades/${broker}/${product}`, fetch_cfg)
+                .then( (res) => {
+                    if (res.status == 200) {
+                        return res.json();
+                    } else {
+                        console.log("error occured geting products");
+                    }
+                }).then( (data) => {
+                    dispatch(receiveChartData(data));
+                })
+    }
+}
+
+function receiveRadarData(data) {
+    return {
+        type: "RECEIVE_RADARDATA",
+        payload: data
+    }
+}
+
+export function getRadarData() {
+    return (dispatch, getState) => {
+        // do something
+        const { auth } = getState();
+        const fetch_cfg = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + auth.token
+            }
+        }
+        console.log("start fetching radar data")
+        return fetch(`${apiHost}/api/trades/analytics`, fetch_cfg)
+                .then( (res) => {
+                    if (res.status == 200) {
+                        return res.json();
+                    } else {
+                        console.log("error occured geting products");
+                    }
+                }).then( (data) => {
+                    dispatch(receiveRadarData(data));
+                })
+    }
+}

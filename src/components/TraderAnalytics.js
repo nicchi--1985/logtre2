@@ -1,58 +1,112 @@
 import React, { Component } from 'react'
 
 //後でapi responseと入れ替える
-const analytics_json = {
-    "trader_type": "リスキータイプ",
-    "term_trade_count": "50",
-    "new_remaining_days": "30",
-    "settlement_remaining_days": "40",
-    "holding_avg": "5",
-    "max_gain_loss": "100000",
-    "min_gain_loss": "-20000",
-    "avg_gain_loss": "30000",
-    "sd_gain_loss": "???"
+const analytics_json = [
+    {
+        name: "期間中取引回数",
+        value: "0.8"
+    },
+    {
+        name: "SQまでの残日数(新規)",
+        value: "4.3"
+    },
+    {
+        name: "SQまでの残日数(決済)",
+        value: "5.0"
+    },
+    {
+        name: "平均保有期間",
+        value: "1.8"
+    },
+    {
+        name: "損益最高",
+        value: "2.0"
+    },
+    {
+        name: "損益最低",
+        value: "4.0"
+    },
+    {
+        name: "損益平均",
+        value: "5.0"
+    }
+]
+
+const options = {
+    legend: {
+        position: "top"
+    },
+    title: {
+        display: true,
+        text: 'Chart.js Radar Chart'
+    },
+    scale: {
+        reverse: false,
+        ticks: {
+            beginAtZero: true,
+            max: 10
+        }
+    }
+}
+
+function create_radar_data(data) {
+    const labels = data.map((index) => {
+        return index.name
+    })
+    const values = data.map((index) => {
+        return index.value
+    })
+    return {
+        labels: labels,
+        datasets: [{
+            label: "trader analytics",
+            data: values,
+            backgroundColor: "rgba(62, 253, 52, 0.4)",
+            borderColor: "rgba(62, 253, 52, 1.0)"
+        }]
+    }
 }
 
 export default class TraderAnalytics extends Component {
+    constructor(props) {
+        super(props);
+        this.render = this.render.bind(this);
+    }
+
+    render_list(data) {
+        return data.map((index, i)=>{
+            return (
+                <tr key={"index-" + i}>
+                    <th>{index.name}</th>
+                    <td>{index.real_val}</td>
+                </tr>
+            )
+        })
+    }
+
     render() {
+        let graph;
+        let indexList;
+        if (typeof(window) == 'undefined') {
+            graph = (<div></div>);
+            indexList = null;
+        } else if(this.props.radarData.length == 0) {
+            console.log("there is no chart data")
+            graph = (<div></div>);
+            indexList = null;
+        } else {
+            const Radar = require('react-chartjs').Radar
+            const data = create_radar_data(this.props.radarData)
+            graph = (<Radar data={data} options={options} width="250" height="200"/>)
+            indexList = this.render_list(this.props.radarData)
+        }
         return (
             <div>
-                <h5>分析チャート描画位置</h5>
+                {graph}
                 <div><h6>{analytics_json.trader_type}</h6></div>
                 <table>
                     <tbody>
-                        <tr>
-                            <th>期間中取引回数</th>
-                            <td>{analytics_json.term_trade_count}</td>
-                        </tr>
-                        <tr>
-                            <th>SQまでの残日数(新規)</th>
-                            <td>{analytics_json.new_remaining_days}</td>
-                        </tr>
-                        <tr>
-                            <th>SQまでの残日数(決済)</th>
-                            <td>{analytics_json.settlement_remaining_days}</td>
-                        </tr>
-                        <tr>
-                            <th>平均保有期間</th>
-                            <td>{analytics_json.holding_avg}</td>
-                        </tr>
-                        <tr>
-                            <th>損益最高</th>
-                            <td>{analytics_json.max_gain_loss}</td>
-                        </tr>
-                        <tr>
-                            <th>損益最低</th>
-                            <td>{analytics_json.min_gain_loss}</td>
-                        </tr>
-                        <tr>
-                            <th>損益平均</th>
-                            <td>{analytics_json.avg_gain_loss}</td>
-                        </tr>
-                        <tr>
-                            <th>損益偏差</th>
-                            <td>{analytics_json.sd_gain_loss}</td>
-                        </tr>
+                        {indexList}
                     </tbody>
                 </table>
             </div>

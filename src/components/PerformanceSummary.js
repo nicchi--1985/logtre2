@@ -9,15 +9,15 @@ export default class PerformanceSummary extends Component {
                   <tbody>
                     <tr>
                         <th>四半期損益</th>
-                        <td>{this.props.summary.gain_loss}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <th>ROI(年間)</th>
-                        <td>{this.props.summary.roi}</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <th>取引回数</th>
-                        <td>{this.props.summary.trade_count}</td>
+                        <td></td>
                     </tr>
                   </tbody>
                 </table>

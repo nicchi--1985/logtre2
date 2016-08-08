@@ -10,7 +10,7 @@ export default class ChartList extends Component {
 
     render_list(data) {
         return data.map((product, i)=>{
-            return <li><Link to={ `/charts/${this.props.broker}/${product.name}` } key={i}>{product.disp_name}　損益　{product.gain_loss_total}</Link></li>
+            return <li key={`${i}`}><Link to={ `/chart/${this.props.broker}/${product.name}` }>{product.disp_name}　損益　{product.gain_loss_total}</Link></li>
         })
     }
     

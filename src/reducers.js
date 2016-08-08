@@ -3,7 +3,12 @@ const initial_state = {
   auth: {token: null, username: null},
   performanceSummary: {gain_loss: null, roi: null, trade_count: null},
   brokers: [],
-  products: []
+  products: [],
+  chartData: {
+    data: [],
+    time_unit: "month"
+  },
+  radarData: []
 }
 
 export default function reducer(state=initial_state, action) {
@@ -36,6 +41,17 @@ export default function reducer(state=initial_state, action) {
     case "RECEIVE_PRODUCTS":
       return Object.assign({}, state, {
         products: action.products
+      })
+    case "RECEIVE_CHARTDATA":
+      return Object.assign({}, state, {
+        chartData: {
+          data: action.payload.data,
+          time_unit: action.payload.time_unit
+        }
+      })
+    case "RECEIVE_RADARDATA":
+      return Object.assign({}, state, {
+        radarData: action.payload
       })
     default:
       return state

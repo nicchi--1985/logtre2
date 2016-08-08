@@ -7,8 +7,8 @@ export default class StockCompanyList extends Component {
         this.render = this.render.bind(this);
     }
     render_list(data) {
-        return data.map((comp)=>{
-            return <li><Link to={ "/charts/" + comp.name } key={comp.id}>{comp.disp_name}</Link></li>
+        return data.map((comp, i)=>{
+            return <li><Link to={ "/charts/" + comp.name } key={i}>{comp.disp_name}</Link></li>
         })
     }
     

@@ -4,7 +4,6 @@ export default class TradeList extends Component {
     // this.props.
     render() {
         console.log("TradesList")
-        console.log(this.props.trades)
         const trades = this.props.trades
         const elements = trades.map((trade) => {
             const key = "trade_id_" + trade.id
