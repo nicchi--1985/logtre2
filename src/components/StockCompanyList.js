@@ -8,7 +8,7 @@ export default class StockCompanyList extends Component {
     }
     render_list(data) {
         return data.map((comp, i)=>{
-            return <li><Link to={ "/charts/" + comp.name } key={i}>{comp.disp_name}</Link></li>
+            return <li key={"comp"+i}><Link to={ "/charts/" + comp.name }>{comp.disp_name}</Link></li>
         })
     }
     
