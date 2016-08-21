@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
+import Base from './containers/Base'
 import App from './containers/App'
 import TopPage from './containers/pages/TopPage'
 import ChartListPage from './containers/pages/ChartListPage'
@@ -12,7 +13,7 @@ import UserOnly from './containers/UserOnly'
 import GuestOnly from './containers/GuestOnly'
 
 export default (
-  <Route>
+  <Route conponent={Base}>
     <Route component={UserOnly}>
       <Route path="/top" component={App}>
         <IndexRoute component={TopPage} />

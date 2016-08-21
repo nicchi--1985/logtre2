@@ -14,7 +14,6 @@ class TopPage extends Component {
     render() {
         return (
             <div>
-                <h4>Welcome to Logtre!!</h4>
                 <StockCompanyList brokers={this.props.brokers}/>
                 <PerformanceSummary summary={this.props.performanceSummary}/>
             </div>

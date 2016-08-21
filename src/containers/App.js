@@ -6,11 +6,7 @@ export default class App extends Component {
     console.log("rendering App");
     // pass this.props to children
     return(
-      <div className="contents">
-        <li><Link to="/top">TOP</Link></li>
-        <li><Link to="/analytics">ANALYTICS</Link></li>
-        <li><Link to="/setting">SETTING</Link></li>
-        <li><Link to="/dev/trades">TRADES(DEV)</Link></li>
+      <div className="headers">
         {this.props.children}
       </div>
     )

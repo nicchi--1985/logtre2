@@ -8,6 +8,7 @@ import PerformanceSummary from '../../components/PerformanceSummary'
 class ChartPage extends Component {
     componentWillMount() {
         this.props.actions.getChartData(this.props.params.broker, this.props.params.product_no);
+        this.props.actions.getSummary();
     }
 
     render() {
@@ -15,9 +16,8 @@ class ChartPage extends Component {
         console.log(this.props.chartData)
         return (
             <div>
-                <h4>here's your Chart!</h4>
                 <ChartCanvas chartData={this.props.chartData} />
-                <PerformanceSummary />
+                <PerformanceSummary summary={this.props.performanceSummary}/>
             </div>
         )
     }
@@ -25,7 +25,8 @@ class ChartPage extends Component {
 
 function mapStateToPorps(state) {
     return {
-        chartData: state.chartData
+        chartData: state.chartData,
+        performanceSummary: state.performanceSummary
     }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { commonStyle } from '../config'
 import { getTimeChartData, getTimeChartOptions } from '../config'
 
 export default class ChartCanvas extends Component {
@@ -11,14 +12,12 @@ export default class ChartCanvas extends Component {
             graph = (<div></div>);
         } else {
             const Line = require('react-chartjs').Line
-            console.log("ChartCanvas!!!!")
-            console.log(this.props.chartData)
             const { data, time_unit } = this.props.chartData
             graph = (<Line data={getTimeChartData(data)} options={getTimeChartOptions(time_unit)} width="400" height="150"/>)
         }
-        const style = {width: "65%"}
         return (
-            <div style={style} >
+            <div style={{width: "95%"}} >
+                <div style={commonStyle.heading}><p style={{"margin":"5px 0"}}>あなたの投資履歴</p></div>
                 {graph}
             </div>
         )

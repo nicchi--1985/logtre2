@@ -1,36 +1,6 @@
 import React, { Component } from 'react'
-
-//後でapi responseと入れ替える
-const analytics_json = [
-    {
-        name: "期間中取引回数",
-        value: "0.8"
-    },
-    {
-        name: "SQまでの残日数(新規)",
-        value: "4.3"
-    },
-    {
-        name: "SQまでの残日数(決済)",
-        value: "5.0"
-    },
-    {
-        name: "平均保有期間",
-        value: "1.8"
-    },
-    {
-        name: "損益最高",
-        value: "2.0"
-    },
-    {
-        name: "損益最低",
-        value: "4.0"
-    },
-    {
-        name: "損益平均",
-        value: "5.0"
-    }
-]
+import { commonStyle } from '../config'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const options = {
     legend: {
@@ -76,10 +46,10 @@ export default class TraderAnalytics extends Component {
     render_list(data) {
         return data.map((index, i)=>{
             return (
-                <tr key={"index-" + i}>
-                    <th>{index.name}</th>
-                    <td>{index.real_val}</td>
-                </tr>
+                <TableRow key={"index-" + i}>
+                    <TableHeaderColumn>{index.name}</TableHeaderColumn>
+                    <TableRowColumn>{index.real_val}</TableRowColumn>
+                </TableRow>
             )
         })
     }
@@ -102,13 +72,13 @@ export default class TraderAnalytics extends Component {
         }
         return (
             <div>
+                <div style={commonStyle.heading}><p style={{"margin":"5px 0"}}>あなたの投資傾向</p></div>
                 {graph}
-                <div><h6>{analytics_json.trader_type}</h6></div>
-                <table>
-                    <tbody>
+                <Table>
+                    <TableBody displayRowCheckbox={false}>
                         {indexList}
-                    </tbody>
-                </table>
+                    </TableBody>
+                </Table>
             </div>
         )
     }

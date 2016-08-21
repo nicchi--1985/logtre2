@@ -1,3 +1,23 @@
+export const commonStyle = {
+    primaryColor: "#64DD17",
+    heading: {
+        "color": "#444",
+        "border-bottom": `3px solid #64DD17`
+    },
+    table: {
+        root:{
+            "margin": "5px 10px"
+        },
+        header: {
+            "background-color": "#eee"
+        },
+        headerRow: {
+            "color": "#000"
+        }
+    }
+}
+
+
 export function getTimeChartData(data=null) {
     return {
         datasets: [

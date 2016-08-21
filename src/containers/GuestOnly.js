@@ -4,6 +4,21 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import cookie from 'react-cookie';
 import * as Actions from '../actions/actions';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import { commonStyle } from '../config';
+
+const appBarProps = {
+  title: "Logtre",
+  style: {
+      backgroundColor: commonStyle.primaryColor
+  }
+}
+
+const contentStyle = {
+  "max-width": "700px"
+}
+
 
 class GuestOnly extends Component {
     componentWillMount() {
@@ -38,10 +53,12 @@ class GuestOnly extends Component {
         console.log('rendering GuestOnly');
         const childrenWithProps = React.cloneElement(this.props.children, {...this.props})
         return (
-            <div>
-                <h4>GuestOnly</h4>
-                {childrenWithProps}
-            </div>
+            <MuiThemeProvider>
+                <div id="content" style={contentStyle}>
+                    <AppBar {...appBarProps} />
+                    {childrenWithProps}
+                </div>
+            </MuiThemeProvider>
         )
     }
 }

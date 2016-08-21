@@ -58,19 +58,6 @@ app.get('*', (req, res, next) => {
   })
 })
 
-function handleRender(error, redirectLocation, renderProps) {
-  
-  
-  /*const store = createStore(reducer)
-  const html = renderToString(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  )
-  const preloadedState = store.getState()
-  res.send(renderFullPage(html, preloadedState))*/
-}
-
 app.listen(port, () => {
   console.log('app listening on port 9001 ...')
 });

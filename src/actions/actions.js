@@ -83,8 +83,8 @@ export function uploadCSVFile(payload) {
     return (dispatch, getState) => {
         const { auth } = getState();
         const body = new FormData();
-        body.append("broker", payload.stockComp);
-        body.append("file", payload.upFile, payload.upFile.name);
+        body.append("broker", payload.broker);
+        body.append("file", payload.file, payload.file.name);
         const fetch_cfg = {
             method: 'POST',
             headers: {
@@ -96,10 +96,25 @@ export function uploadCSVFile(payload) {
                 .then((res) => {
                     if (res.status == "200") {
                         console.log("upload success");
+                        dispatch(successUploadCSV("正常に取引履歴をアップロードしました"))
                     } else {
                         console.log("error occured uploading file")
                     }
                 })
+    }
+}
+
+function successUploadCSV(success_msg) {
+    return {
+        type: "SUCCESS_UPLOAD_FORM",
+        msg: success_msg
+    }
+}
+
+export function changeUploadForm(uploadForm) {
+    return {
+        type: "CHANGE_UPLOAD_FORM",
+        uploadForm: uploadForm
     }
 }
 

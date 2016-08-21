@@ -8,7 +8,8 @@ const initial_state = {
     data: [],
     time_unit: "month"
   },
-  radarData: []
+  radarData: [],
+  uploadForm: {broker: 0, file: {name: "ファイルを選択して下さい"}, message: ""}
 }
 
 export default function reducer(state=initial_state, action) {
@@ -28,6 +29,22 @@ export default function reducer(state=initial_state, action) {
         user: {
           id: action.payload.id,
           name: action.payload.name
+        }
+      })
+    case "CHANGE_UPLOAD_FORM":
+      return Object.assign({}, state, {
+        uploadForm: {
+          broker: action.uploadForm.broker,
+          file: action.uploadForm.file,
+          message: ""
+        }
+      })
+    case "SUCCESS_UPLOAD_FORM":
+      return Object.assign({}, state, {
+        uploadForm: {
+          broker: 0,
+          file: {name: "ファイルを選択して下さい"},
+          message: action.msg
         }
       })
     case "RECEIVE_SUMMARY":

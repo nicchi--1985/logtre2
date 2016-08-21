@@ -2,7 +2,20 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../actions/actions';
-import { base_host } from '../../routes'
+import { base_host } from '../../routes';
+import RaisedButton from 'material-ui/RaisedButton';
+import { commonStyle } from '../../config';
+
+const LoginBtnSytle = {
+    "padding": "3px 6px",
+    "margin": "20px auto",
+    "color": "white"
+}
+
+const LoginBtnLabelStyle = {
+    "padding": "0 5px",
+    "color": "#fff"
+}
 
 class LoginPage extends Component {
     componentWillMount() {
@@ -12,8 +25,14 @@ class LoginPage extends Component {
     render() {
         return (
             <div>
-                <h5>Please Login to use Logtre.</h5>
-                <a href='auth/facebook'>Login Facebook with link</a>
+                <a href="auth/facebook">
+                <RaisedButton backgroundColor={commonStyle.primaryColor}
+                              labelColor="#fff"
+                              labelStyle={LoginBtnLabelStyle}
+                              style={LoginBtnSytle}>
+                    <span style={{"color": "white", "display":"inline-block","margin":"0 5px"}}>SignUp with Facebook</span>
+                </RaisedButton>
+                </a>
             </div>
         )
     }
