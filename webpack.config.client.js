@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'public')
+    path: path.join(__dirname, '/public')
   },
   devtool: 'inline-source-map',
   module: {
@@ -20,6 +20,10 @@ module.exports = {
       {
         test: /\.json$/,
         loader: 'json-loader'
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'file-loader?name=/public/img/[name]-[hash].[ext]'
       }
     ]
   }

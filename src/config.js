@@ -1,8 +1,8 @@
 export const commonStyle = {
-    primaryColor: "#64DD17",
+    primaryColor: "#92C717",
     heading: {
         "color": "#444",
-        "border-bottom": `3px solid #64DD17`
+        "border-bottom": `3px solid #92C717`
     },
     table: {
         root:{

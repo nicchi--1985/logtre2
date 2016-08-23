@@ -1,7 +1,7 @@
 import cookie from 'react-cookie'
 import { base_host } from '../routes'
 
-const apiHost = "http://app.logtre.com"
+const apiHost = "http://local.logtre.com:8888"
 
 // サーバから取引データを取得
 export function fetchTrades(url) {

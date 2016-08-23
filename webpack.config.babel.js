@@ -36,6 +36,10 @@ export default {
       {
         test: /\.json$/,
         loader: 'json-loader'
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'file-loader?name=/public/img/[name]-[hash].[ext]'
       }
     ],
   },

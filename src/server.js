@@ -14,7 +14,7 @@ import routes from './routes'
 const app = express()
 const port = 9001
 
-app.use('/static', express.static(path.join(process.cwd(), 'public')))
+app.use('/public', express.static(path.join(process.cwd(), 'public')))
 
 function renderFullPage(html) {
   return(`
@@ -32,7 +32,7 @@ function renderFullPage(html) {
       </head>
       <body>
         <div id="root">${html}</div>
-        <script type="text/javascript" src='/static/bundle.js'></script>
+        <script type="text/javascript" src='/public/bundle.js'></script>
       </body>
     </html>`
   )

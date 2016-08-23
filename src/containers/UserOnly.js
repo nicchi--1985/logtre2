@@ -11,7 +11,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { commonStyle } from '../config'
 
 const appBarProps = {
-  title: "Logtre",
+  title: "",
   style: {
       backgroundColor: commonStyle.primaryColor
   }
@@ -60,7 +60,7 @@ class UserOnly extends Component {
         console.log('rendering UserOnly');
         const user_msg = (
             <p>
-            {this.props.currentUser ? `welcome ${this.props.currentUser.name}` : ''}
+            {this.props.currentUser ? `ID: ${this.props.currentUser.name}` : ''}
             </p>
         )
         const tabs = (
@@ -75,7 +75,11 @@ class UserOnly extends Component {
             <MuiThemeProvider>
                 <div id="content" style={contentStyle}>
                     <div id="header" style={{"margin-bottom":"20px"}}>
-                        <AppBar {...appBarProps} iconElementRight={user_msg} />
+                        <AppBar {...appBarProps} 
+                                iconElementRight={user_msg} 
+                                iconElementLeft={<img src={require('../assets/img/logtre_logo.jpg')} style={{"width":"70px"}} />}
+                                iconStyleLeft={{"margin-left":"10px"}}
+                                iconStyleRight={{"color":"white", "margin-right":"10px"}} />
                         <Link to="/top"><FlatButton label="トップ" 
                                                     style={menuButtonStyle.root} 
                                                     labelStyle={menuButtonStyle.label}
