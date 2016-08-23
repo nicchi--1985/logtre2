@@ -10,6 +10,7 @@ node_modules
 # build files
 public
 bundle-server.js
+bundle.js
 
 .DS_store
 jsconfig.json
