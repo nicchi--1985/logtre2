@@ -8,7 +8,7 @@ import PerformanceSummary from '../../components/PerformanceSummary'
 class ChartPage extends Component {
     componentWillMount() {
         this.props.actions.getChartData(this.props.params.broker, this.props.params.product_no);
-        this.props.actions.getSummary();
+        this.props.actions.getProductSummary(this.props.params.broker, this.props.params.product_no);
     }
 
     render() {

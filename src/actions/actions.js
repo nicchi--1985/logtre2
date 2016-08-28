@@ -211,6 +211,30 @@ export function getProducts(broker) {
     }
 }
 
+export function getProductSummary(broker, product) {
+    return (dispatch, getState) => {
+        // do something
+        const { auth } = getState();
+        const fetch_cfg = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + auth.token
+            }
+        }
+        console.log(`start fetching product summary for ${broker}/${product}`)
+        return fetch(`${apiHost}/api/trades/summary?broker=${broker}&product=${product}`, fetch_cfg)
+                .then( (res) => {
+                    if (res.status == 200) {
+                        return res.json();
+                    } else {
+                        console.log("error occured geting product summary");
+                    }
+                }).then( (summary) => {
+                    dispatch(receiveSummary(summary));
+                })
+    }
+}
+
 function receiveChartData(data) {
     return {
         type: "RECEIVE_CHARTDATA",
