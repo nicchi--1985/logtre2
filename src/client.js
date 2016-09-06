@@ -5,6 +5,7 @@ import { configurateStore } from './store'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
+import fetch from 'isomorphic-fetch'
 import routes from './routes'
 
 const store = configurateStore();
