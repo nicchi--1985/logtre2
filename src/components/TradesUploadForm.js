@@ -17,14 +17,11 @@ export default class TradesUploadForm extends Component {
         this.render = this.render.bind(this);
     }
     stockCompChange(e, i, value) {
-        console.log("stockCompChange")
-        console.log(value)
         this.props.uploadForm.broker = value;
         this.props.changeUploadForm(this.props.uploadForm);
     }
 
     _openFileDialog() {
-      console.log(this.refs)
       const fileDom = this.refs.fileUpload
       fileDom.click()
     }
@@ -36,7 +33,6 @@ export default class TradesUploadForm extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        console.log("handle submit")
         let broker = this.props.uploadForm.broker
         let file = this.props.uploadForm.file
         if (broker != 0 && file != null) {
@@ -47,7 +43,6 @@ export default class TradesUploadForm extends Component {
     }
     
     render() {
-        console.log(`reder uploadForm: broker->${this.props.uploadForm.broker}`)
         return (
           <div>
             <h4>証券会社から出力した取引履歴csvをログトレに取り込む</h4>

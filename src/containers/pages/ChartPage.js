@@ -7,15 +7,22 @@ import PerformanceSummary from '../../components/PerformanceSummary'
 
 class ChartPage extends Component {
     componentWillMount() {
-        this.props.actions.getChartData(this.props.params.broker, this.props.params.product_no);
+        this.props.actions.getChartData(this.props.params.broker, this.props.params.product_no, this.props.chartData.term);
         this.props.actions.getProductSummary(this.props.params.broker, this.props.params.product_no);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.chartData.term != nextProps.chartData.term) {
+            this.props.actions.getChartData(this.props.params.broker, this.props.params.product_no, nextProps.chartData.term);
+        }
+    }
+
     render() {
-        console.log("CHARTDATA!!!!!")
-        console.log(this.props.chartData)
         return (
             <div>
+                <button type="button" onClick={this.props.actions.countupChartDataTerm}>＜＜</button>
+                対象期間:{this.props.chartData.term}
+                <button type="button" onClick={this.props.actions.countdownChartDataTerm}>＞＞</button>
                 <ChartCanvas chartData={this.props.chartData} />
                 <PerformanceSummary summary={this.props.performanceSummary}/>
             </div>

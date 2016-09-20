@@ -61,7 +61,6 @@ export default class TraderAnalytics extends Component {
             graph = (<div></div>);
             indexList = null;
         } else if(this.props.radarData.length == 0) {
-            console.log("there is no chart data")
             graph = (<div></div>);
             indexList = null;
         } else {

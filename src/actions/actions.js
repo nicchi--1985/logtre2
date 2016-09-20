@@ -242,18 +242,18 @@ function receiveChartData(data) {
     }
 }
 
-export function getChartData(broker, product) {
+export function getChartData(broker, product, term) {
     return (dispatch, getState) => {
         // do something
-        const { auth } = getState();
+        const { auth, chartData } = getState();
         const fetch_cfg = {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + auth.token
             }
         }
-        console.log(`start fetching chart data for ${broker}/${product}`)
-        return fetch(`${apiHost}/api/trades/${broker}/${product}`, fetch_cfg)
+        console.log(`start fetching chart data for ${broker}/${product}?term=${term}`)
+        return fetch(`${apiHost}/api/trades/${broker}/${product}?term=${term}`, fetch_cfg)
                 .then( (res) => {
                     if (res.status == 200) {
                         return res.json();
@@ -261,8 +261,24 @@ export function getChartData(broker, product) {
                         console.log("error occured geting products");
                     }
                 }).then( (data) => {
+                    console.log("receiveData:");
+                    console.log(data);
+                    console.log("state.chartData:");
+                    console.log(chartData);
                     dispatch(receiveChartData(data));
                 })
+    }
+}
+
+export function countupChartDataTerm() {
+    return {
+        type: "COUNTUP_CHARTDATA_TERM"
+    }
+}
+
+export function countdownChartDataTerm() {
+    return {
+        type: "COUNTDOWN_CHARTDATA_TERM"
     }
 }
 

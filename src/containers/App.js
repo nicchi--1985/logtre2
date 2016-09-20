@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 
 export default class App extends Component {
   render() {
-    console.log("rendering App");
     // pass this.props to children
     return(
       <div className="headers">

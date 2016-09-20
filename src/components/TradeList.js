@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 export default class TradeList extends Component {
     // this.props.
     render() {
-        console.log("TradesList")
         const trades = this.props.trades
         const elements = trades.map((trade) => {
             const key = "trade_id_" + trade.id

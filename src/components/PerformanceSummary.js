@@ -9,8 +9,6 @@ export default class PerformanceSummary extends Component {
     }
     
     render() {
-        console.log("aaaaaaaaaaa!!!!!!!!!!!!!!!!!")
-        console.log(this.props.summary)
         return (
             <div>
                 <div style={commonStyle.heading}><p style={{"margin":"5px 0"}}>投資成績</p></div>

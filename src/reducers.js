@@ -6,7 +6,9 @@ const initial_state = {
   products: [],
   chartData: {
     data: [],
-    time_unit: "month"
+    time_unit: "month",
+    term: 1,
+    term_days: 180
   },
   radarData: [],
   uploadForm: {broker: 0, file: {name: "ファイルを選択して下さい"}, message: ""}
@@ -19,12 +21,10 @@ export default function reducer(state=initial_state, action) {
         trades: action.payload
       })
     case 'SET_TOKEN':
-      console.log('storing token');
       return Object.assign({}, state, {
         auth: {token: action.token, username: "success"}
       })
     case 'SET_USER':
-      console.log('set user info');
       return Object.assign({}, state, {
         user: {
           id: action.payload.id,
@@ -63,7 +63,27 @@ export default function reducer(state=initial_state, action) {
       return Object.assign({}, state, {
         chartData: {
           data: action.payload.data,
-          time_unit: action.payload.time_unit
+          time_unit: action.payload.time_unit,
+          term: state.chartData.term,
+          term_days: 180
+        }
+      })
+    case "COUNTUP_CHARTDATA_TERM":
+      return Object.assign({}, state, {
+        chartData: {
+          data: state.chartData.data,
+          time_unit: state.chartData.time_unit,
+          term: state.chartData.term + 1,
+          term_days: 180
+        }
+      })
+    case "COUNTDOWN_CHARTDATA_TERM":
+      return Object.assign({}, state, {
+        chartData: {
+          data: state.chartData.data,
+          time_unit: state.chartData.time_unit,
+          term: state.chartData.term - 1,
+          term_days: 180
         }
       })
     case "RECEIVE_RADARDATA":

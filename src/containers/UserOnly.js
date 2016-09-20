@@ -35,21 +35,17 @@ const menuButtonStyle = {
 
 class UserOnly extends Component {
     componentWillMount() {
-        console.log("user will mount");
         this.checkAuth(this.props);
     }
     
     componentWillReceiveProps(nextProps) {
-        console.log("user will receive props");
         this.checkAuth(nextProps);
     }
     
     checkAuth(props) {
         if (!props.isAuthenticated && cookie.load('token')) {
-            console.log('dispath successAuth action');
             props.actions.successAuthentication(cookie.load('token'));
         } else if (!props.isAuthenticated) {
-            console.log("redirecting to login");
             this.context.router.push('/login');
         } else {
             console.log("already Authenticate");
@@ -57,7 +53,6 @@ class UserOnly extends Component {
     }
         
     render() {
-        console.log('rendering UserOnly');
         const user_msg = (
             <p>
             {this.props.currentUser ? `ID: ${this.props.currentUser.name}` : ''}

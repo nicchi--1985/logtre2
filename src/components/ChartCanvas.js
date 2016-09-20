@@ -8,7 +8,6 @@ export default class ChartCanvas extends Component {
         if (typeof(window) == 'undefined') {
             graph = (<div></div>);
         } else if(this.props.chartData.length == 0) {
-            console.log("there is no chart data")
             graph = (<div></div>);
         } else {
             const Line = require('react-chartjs').Line
