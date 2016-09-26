@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { commonStyle } from '../../config';
 import * as Actions from '../../actions/actions';
 import ChartCanvas from '../../components/ChartCanvas'
 import PerformanceSummary from '../../components/PerformanceSummary'
@@ -18,11 +19,13 @@ class ChartPage extends Component {
     }
 
     render() {
+        const chart_term = `${this.props.chartData.term_end} - ${this.props.chartData.term_start}`
         return (
             <div>
+                <div style={commonStyle.heading}><p style={{"margin":"5px 0"}}>あなたの投資履歴</p></div>
                 <button type="button" onClick={this.props.actions.countupChartDataTerm}>＜＜</button>
-                対象期間:{this.props.chartData.term}
-                <button type="button" onClick={this.props.actions.countdownChartDataTerm}>＞＞</button>
+                <p style={{'display': 'inline-block'}}>{chart_term}</p>
+                <button type="button" onClick={this.props.actions.countdownChartDataTerm} disabled={this.props.chartData.term <= 1}>＞＞</button>
                 <ChartCanvas chartData={this.props.chartData} />
                 <PerformanceSummary summary={this.props.performanceSummary}/>
             </div>

@@ -16,7 +16,6 @@ export default class ChartCanvas extends Component {
         }
         return (
             <div style={{width: "95%"}} >
-                <div style={commonStyle.heading}><p style={{"margin":"5px 0"}}>あなたの投資履歴</p></div>
                 {graph}
             </div>
         )

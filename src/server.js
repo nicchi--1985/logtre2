@@ -51,8 +51,8 @@ app.get('*', (req, res, next) => {
       const html = renderToString(<Provider store={store}><RouterContext {...renderProps} /></Provider>)
       res.status(200).send(renderFullPage(html));
     } else {
-      console.log('not found')
-      console.log(req.url)
+      console.error('not found')
+      console.error(req.url)
       res.status(404).send('Not found')
     }
   })

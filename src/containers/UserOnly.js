@@ -48,7 +48,7 @@ class UserOnly extends Component {
         } else if (!props.isAuthenticated) {
             this.context.router.push('/login');
         } else {
-            console.log("already Authenticate");
+            console.error("already Authenticate");
         }
     }
         

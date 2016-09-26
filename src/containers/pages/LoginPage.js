@@ -19,7 +19,6 @@ const LoginBtnLabelStyle = {
 
 class LoginPage extends Component {
     componentWillMount() {
-        console.log('rendering login page');
     }
     
     render() {

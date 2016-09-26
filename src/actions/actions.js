@@ -11,7 +11,7 @@ export function fetchTrades(url) {
         .then(json => {
             dispatch(receiveTrades(json))
         }).catch((err) => {
-            console.log(err.message)
+            console.error(err.message)
         })
     }
 }
@@ -30,7 +30,6 @@ export function authWithFacebook(url) {
         const config = {}
         return fetch(url, config)
         .then(res => {
-            console.log("got response for fbAuth")
             return res.json()
         })
         .then(token => {
@@ -73,8 +72,8 @@ export function successAuthentication(token) {
                     dispatch(storeUser(user));
                 })
                 .catch((err) => {
-                    console.log('error occured');
-                    console.log(err);
+                    console.error('error occured');
+                    console.error(err);
                 })
     }
 }
@@ -98,7 +97,7 @@ export function uploadCSVFile(payload) {
                         console.log("upload success");
                         dispatch(successUploadCSV("正常に取引履歴をアップロードしました"))
                     } else {
-                        console.log("error occured uploading file")
+                        console.error("error occured uploading file")
                     }
                 })
     }
@@ -140,7 +139,7 @@ export function getSummary() {
                     if (res.status == 200) {
                         return res.json();
                     } else {
-                        console.log("error occured geting summary");
+                        console.error("error occured geting summary");
                     }
                 }).then( (summary) => {
                     dispatch(receiveSummary(summary));
@@ -171,10 +170,9 @@ export function getBrokers() {
                     if (res.status == 200) {
                         return res.json();
                     } else {
-                        console.log("error occured geting summary");
+                        console.error("error occured geting summary");
                     }
                 }).then( (brokers) => {
-                    console.log(brokers);
                     dispatch(receiveBrokers(brokers));
                 })
     }
@@ -203,7 +201,7 @@ export function getProducts(broker) {
                     if (res.status == 200) {
                         return res.json();
                     } else {
-                        console.log("error occured geting products");
+                        console.error("error occured geting products");
                     }
                 }).then( (products) => {
                     dispatch(receiveProducts(products));
@@ -227,7 +225,7 @@ export function getProductSummary(broker, product) {
                     if (res.status == 200) {
                         return res.json();
                     } else {
-                        console.log("error occured geting product summary");
+                        console.error("error occured geting product summary");
                     }
                 }).then( (summary) => {
                     dispatch(receiveSummary(summary));
@@ -258,13 +256,9 @@ export function getChartData(broker, product, term) {
                     if (res.status == 200) {
                         return res.json();
                     } else {
-                        console.log("error occured geting products");
+                        console.error("error occured geting products");
                     }
                 }).then( (data) => {
-                    console.log("receiveData:");
-                    console.log(data);
-                    console.log("state.chartData:");
-                    console.log(chartData);
                     dispatch(receiveChartData(data));
                 })
     }
@@ -305,7 +299,7 @@ export function getRadarData() {
                     if (res.status == 200) {
                         return res.json();
                     } else {
-                        console.log("error occured geting products");
+                        console.error("error occured geting products");
                     }
                 }).then( (data) => {
                     dispatch(receiveRadarData(data));

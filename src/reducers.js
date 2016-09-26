@@ -8,6 +8,8 @@ const initial_state = {
     data: [],
     time_unit: "month",
     term: 1,
+    term_start: "",
+    term_end: "",
     term_days: 180
   },
   radarData: [],
@@ -65,6 +67,8 @@ export default function reducer(state=initial_state, action) {
           data: action.payload.data,
           time_unit: action.payload.time_unit,
           term: state.chartData.term,
+          term_start: action.payload.term_start,
+          term_end: action.payload.term_end,
           term_days: 180
         }
       })
@@ -74,6 +78,8 @@ export default function reducer(state=initial_state, action) {
           data: state.chartData.data,
           time_unit: state.chartData.time_unit,
           term: state.chartData.term + 1,
+          term_start: state.chartData.term_start,
+          term_end: state.chartData.term_end,
           term_days: 180
         }
       })
@@ -83,6 +89,8 @@ export default function reducer(state=initial_state, action) {
           data: state.chartData.data,
           time_unit: state.chartData.time_unit,
           term: state.chartData.term - 1,
+          term_start: state.chartData.term_start,
+          term_end: state.chartData.term_end,
           term_days: 180
         }
       })
