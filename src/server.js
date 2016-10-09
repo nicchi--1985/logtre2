@@ -39,6 +39,7 @@ function renderFullPage(html) {
 }
 
 app.get('*', (req, res, next) => {
+  global.navigator = { userAgent: req.headers['user-agent'] };
   console.log("start handling req...")
   cookie.plugToRequest(req, res);
   match({routes, location:req.url}, (error, redirectLocation, renderProps) => {

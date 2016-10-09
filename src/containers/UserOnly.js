@@ -18,7 +18,7 @@ const appBarProps = {
 }
 
 const contentStyle = {
-  "max-width": "800px"
+  "maxWidth": "800px"
 }
 
 const menuButtonStyle = {
@@ -27,7 +27,7 @@ const menuButtonStyle = {
         "border":"2px solid #fff",
     },
     label: {
-        "font-size": "large",
+        "fontSize": "large",
         "color": "#fff"
     }
 }
@@ -36,10 +36,6 @@ const menuButtonStyle = {
 class UserOnly extends Component {
     componentWillMount() {
         this.checkAuth(this.props);
-    }
-    
-    componentWillReceiveProps(nextProps) {
-        this.checkAuth(nextProps);
     }
     
     checkAuth(props) {
@@ -69,12 +65,12 @@ class UserOnly extends Component {
         return (
             <MuiThemeProvider>
                 <div id="content" style={contentStyle}>
-                    <div id="header" style={{"margin-bottom":"20px"}}>
+                    <div id="header" style={{"marginBottom":"20px"}}>
                         <AppBar {...appBarProps} 
                                 iconElementRight={user_msg} 
                                 iconElementLeft={<img src={require('../assets/img/logtre_logo.jpg')} style={{"width":"70px"}} />}
-                                iconStyleLeft={{"margin-left":"10px"}}
-                                iconStyleRight={{"color":"white", "margin-right":"10px"}} />
+                                iconStyleLeft={{"marginLeft":"10px"}}
+                                iconStyleRight={{"color":"white", "marginRight":"10px"}} />
                         <Link to="/top"><FlatButton label="トップ" 
                                                     style={menuButtonStyle.root} 
                                                     labelStyle={menuButtonStyle.label}

@@ -2,14 +2,14 @@ export const commonStyle = {
     primaryColor: "#92C717",
     heading: {
         "color": "#444",
-        "border-bottom": `3px solid #92C717`
+        "borderBottom": `3px solid #92C717`
     },
     table: {
         root:{
             "margin": "5px 10px"
         },
         header: {
-            "background-color": "#eee"
+            "backgroundColor": "#eee"
         },
         headerRow: {
             "color": "#000"
