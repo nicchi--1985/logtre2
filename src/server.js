@@ -12,7 +12,7 @@ import App from './containers/App'
 import routes from './routes'
 
 const app = express()
-const port = 9001
+const port = 9501
 
 app.use('/public', express.static(path.join(process.cwd(), 'public')))
 
@@ -60,5 +60,5 @@ app.get('*', (req, res, next) => {
 })
 
 app.listen(port, () => {
-  console.log('app listening on port 9001 ...')
+  console.log(`app listening on port ${port} ...`)
 });

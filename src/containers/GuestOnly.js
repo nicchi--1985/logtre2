@@ -16,7 +16,7 @@ const appBarProps = {
 }
 
 const contentStyle = {
-  "max-width": "700px"
+  "maxWidth": "700px"
 }
 
 
