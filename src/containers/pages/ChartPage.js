@@ -12,12 +12,19 @@ class ChartPage extends Component {
             this.props.params.broker, 
             this.props.params.product_no, 
             this.props.chartData.term);
-        this.props.actions.getProductSummary(this.props.params.broker, this.props.params.product_no);
+        this.props.actions.getProductSummary(
+            this.props.params.broker, 
+            this.props.params.product_no, 
+            this.props.chartData.term);
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.chartData.term != nextProps.chartData.term) {
             this.props.actions.getChartData(
+                this.props.params.broker, 
+                this.props.params.product_no, 
+                nextProps.chartData.term);
+            this.props.actions.getProductSummary(
                 this.props.params.broker, 
                 this.props.params.product_no, 
                 nextProps.chartData.term);

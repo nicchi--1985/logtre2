@@ -209,7 +209,7 @@ export function getProducts(broker) {
     }
 }
 
-export function getProductSummary(broker, product) {
+export function getProductSummary(broker, product, term) {
     return (dispatch, getState) => {
         // do something
         const { auth } = getState();
@@ -219,8 +219,8 @@ export function getProductSummary(broker, product) {
                 'Authorization': 'Bearer ' + auth.token
             }
         }
-        console.log(`start fetching product summary for ${broker}/${product}`)
-        return fetch(`${apiHost}/api/trades/summary?broker=${broker}&product=${product}`, fetch_cfg)
+        console.log(`start fetching product summary for ${broker}/${product} term=${term}`)
+        return fetch(`${apiHost}/api/trades/summary?broker=${broker}&product=${product}&term=${term}`, fetch_cfg)
                 .then( (res) => {
                     if (res.status == 200) {
                         return res.json();
