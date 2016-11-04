@@ -8,7 +8,9 @@
     "start": "node ./bundle-server.js",
     "build-server": "webpack --watch --progress --profile --colors  --config webpack.config.babel.js",
     "build-client": "webpack --watch --progress --profile --colors  --config webpack.config.client.js",
-    "which": "which webpack"
+    "which": "which webpack",
+    "build-sdev": "webpack --display-error-details --config webpack.config.babel.js",
+    "build-cdev": "webpack --display-error-details --config webpack.config.client.js"
   },
   "author": "nicchi",
   "license": "ISC",
@@ -21,12 +23,14 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "chart.js": "^2.2.0-rc.2",
+    "css-loader": "^0.25.0",
     "es6-promise": "^3.2.1",
     "exports-loader": "^0.6.3",
     "express": "^4.13.4",
     "file-loader": "^0.9.0",
     "imports-loader": "^0.6.5",
     "isomorphic-fetch": "^2.2.1",
+    "isomorphic-style-loader": "^1.0.0",
     "json-loader": "^0.5.4",
     "material-design-icons": "^2.2.3",
     "material-ui": "^0.15.3",
@@ -36,9 +40,11 @@
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
+    "react-spinkit": "github:nicchi--1985/react-spinkit",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "style-loader": "^0.13.1",
     "url": "^0.11.0"
   },
   "devDependencies": {

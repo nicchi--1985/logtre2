@@ -1,4 +1,5 @@
-var path = require('path')
+var path = require('path');
+var Promise = require('es6-promise').polyfill();
 
 module.exports = {
   context: path.resolve(__dirname, '.'),
@@ -24,7 +25,14 @@ module.exports = {
       {
         test: /\.(jpg|png)$/,
         loader: 'file-loader?name=/public/img/[name]-[hash].[ext]'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       }
     ]
+  },
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"]
   }
 }

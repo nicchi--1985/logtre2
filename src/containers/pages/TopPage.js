@@ -12,6 +12,8 @@ class TopPage extends Component {
     }
     
     render() {
+        console.log(this.props.brokers);
+        console.log(this.props.performanceSummary)
         return (
             <div>
                 <StockCompanyList brokers={this.props.brokers}/>

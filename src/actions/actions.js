@@ -1,7 +1,7 @@
 import cookie from 'react-cookie'
 import { base_host } from '../routes'
 
-const apiHost = "http://app.logtre.com"
+const apiHost = "http://local.logtre.com"
 
 // サーバから取引データを取得
 export function fetchTrades(url) {
@@ -91,6 +91,7 @@ export function uploadCSVFile(payload) {
             },
             body: body
         }
+        dispatch(startUploadCSV())
         return fetch(`${apiHost}/api/import`, fetch_cfg)
                 .then((res) => {
                     if (res.status == "200") {
@@ -100,6 +101,12 @@ export function uploadCSVFile(payload) {
                         console.error("error occured uploading file")
                     }
                 })
+    }
+}
+
+function startUploadCSV() {
+    return {
+        type: 'START_UPLOAD_FORM'
     }
 }
 
@@ -220,7 +227,7 @@ export function getProductSummary(broker, product, term) {
             }
         }
         console.log(`start fetching product summary for ${broker}/${product} term=${term}`)
-        return fetch(`${apiHost}/api/trades/summary?broker=${broker}&product=${product}&term=${term}`, fetch_cfg)
+        return fetch(`${apiHost}/api/trades/productSummary?broker=${broker}&product=${product}&term=${term}`, fetch_cfg)
                 .then( (res) => {
                     if (res.status == 200) {
                         return res.json();

@@ -13,7 +13,7 @@ const initial_state = {
     term_days: 180
   },
   radarData: [],
-  uploadForm: {broker: 0, file: {name: "ファイルを選択して下さい"}, message: ""}
+  uploadForm: {broker: 0, file: {name: "ファイルを選択して下さい"}, message: "", loading: false}
 }
 
 export default function reducer(state=initial_state, action) {
@@ -33,12 +33,22 @@ export default function reducer(state=initial_state, action) {
           name: action.payload.name
         }
       })
+    case "START_UPLOAD_FORM":
+      return Object.assign({}, state, {
+        uploadForm: {
+          broker: state.uploadForm.broker,
+          file: state.uploadForm.file,
+          message: "",
+          loading: true
+        }
+      })
     case "CHANGE_UPLOAD_FORM":
       return Object.assign({}, state, {
         uploadForm: {
           broker: action.uploadForm.broker,
           file: action.uploadForm.file,
-          message: ""
+          message: "",
+          loading: false
         }
       })
     case "SUCCESS_UPLOAD_FORM":
@@ -46,14 +56,19 @@ export default function reducer(state=initial_state, action) {
         uploadForm: {
           broker: 0,
           file: {name: "ファイルを選択して下さい"},
-          message: action.msg
+          message: action.msg,
+          loading: false
         }
       })
     case "RECEIVE_SUMMARY":
+      console.log('RECEIVE_SUMMARY');
+      console.log(action.summary);
       return Object.assign({}, state, {
         performanceSummary: action.summary
       })
     case "RECEIVE_BROKERS":
+      console.log('RECEIVE_BROKERS');
+      console.log(action.brokers);
       return Object.assign({}, state, {
         brokers: action.brokers
       })

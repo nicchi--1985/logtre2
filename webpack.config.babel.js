@@ -30,7 +30,7 @@ export default {
     loaders: [
       {
         test: /\.js?$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader'
       },
       {
@@ -40,6 +40,10 @@ export default {
       {
         test: /\.(jpg|png)$/,
         loader: 'file-loader?name=/public/img/[name]-[hash].[ext]'
+      },
+      {
+        test: /\.css$/,
+        loader: 'isomorphic-style-loader!css-loader'
       }
     ],
   },

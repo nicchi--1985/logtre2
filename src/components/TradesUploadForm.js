@@ -4,6 +4,22 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import Spinner from 'react-spinkit';
+
+const loading_screen = {
+    position: 'absolute',
+    top: '-50px',
+    left: '-5px',
+    width: '100%',
+    height: '140%',
+    backgroundColor: 'rgba(0,0,0,0.4)'
+}
+
+const loading_wrapper = {
+    position: 'relative',
+    top: '45%',
+    left: '45%'
+}
 
 export default class TradesUploadForm extends Component {
     constructor(props) {
@@ -43,8 +59,18 @@ export default class TradesUploadForm extends Component {
     }
     
     render() {
+        let loader = <div></div>
+        if (this.props.uploadForm.loading == true) {
+            loader = ( 
+            <div id="loading-screen" style={loading_screen}>
+                <div id="loading-wrapper" style={loading_wrapper}>
+                    <Spinner spinnerName='circle' />
+                    <p>now loading...</p>
+                </div>
+            </div>)
+        }
         return (
-          <div>
+          <div style={{position: 'relative'}}>
             <h4>証券会社から出力した取引履歴csvをログトレに取り込む</h4>
             <FlatButton label={this.props.uploadForm.message} secondary={true} />
             <form onSubmit={this.handleSubmit}>
@@ -54,15 +80,16 @@ export default class TradesUploadForm extends Component {
                 </SelectField>
                 <div></div>
                 <FlatButton label={this.props.uploadForm.file.name}
-                            style={{"border-bottom":`1px solid ${commonStyle.primaryColor}`}}
+                            style={{"borderBottom":`1px solid ${commonStyle.primaryColor}`}}
                             onClick={this._openFileDialog}/>
                 <input type="file"
                        name="file"
                        ref="fileUpload"
                        style={{"display":"none"}}
                        onChange={this.fileChange}/>
-                <div style={{"margin-bottom":"10px"}}></div>
+                <div style={{"marginBottom":"10px"}}></div>
                 <RaisedButton type="submit" label="アップロード" backgroundColor={commonStyle.primaryColor} />
+                {loader}
             </form>
           </div>
         )
