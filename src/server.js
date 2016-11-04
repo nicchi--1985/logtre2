@@ -29,6 +29,9 @@ function renderFullPage(html) {
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
+        <script type="text/javascript">
+          window.__ENV__ = "${app.get('env')}";
+        </script>
       </head>
       <body>
         <div id="root">${html}</div>

@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./bundle-server.js",
+    "start-dev": "NODE_ENV=development node ./bundle-server.js",
+    "start": "NODE_ENV=production node ./bundle-server.js",
     "build-server": "webpack --watch --progress --profile --colors  --config webpack.config.babel.js",
     "build-client": "webpack --watch --progress --profile --colors  --config webpack.config.client.js",
     "which": "which webpack",

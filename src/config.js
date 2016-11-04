@@ -1,3 +1,19 @@
+export function getApiHost() {
+    if (process.title == 'browser') {
+        if (window.__ENV__ == 'development') {
+            return 'http://local.logtre.com'
+        } else if (window.__ENV__ == 'production') {
+            return 'http://app.logtre.com'
+        }
+    } else {
+        if (process.env.NODE_ENV == 'development') {
+            return 'http://local.logtre.com'
+        } else if (process.env.NODE_ENV == 'production') {
+            return 'http://app.logtre.com'
+        }
+    }
+}
+
 export const commonStyle = {
     primaryColor: "#92C717",
     heading: {

@@ -1,7 +1,8 @@
 import cookie from 'react-cookie'
 import { base_host } from '../routes'
+import { getApiHost } from '../config'
 
-const apiHost = "http://app.logtre.com"
+const apiHost = getApiHost()
 
 // サーバから取引データを取得
 export function fetchTrades(url) {
@@ -63,7 +64,6 @@ export function successAuthentication(token) {
                 'Authorization': 'Bearer ' + token
             }
         }
-        console.log('going to fetch user info');
         return fetch(`${apiHost}/api/me`, fetch_cfg)
                 .then((res) => {
                     return res.json();
@@ -171,7 +171,6 @@ export function getBrokers() {
                 'Authorization': 'Bearer ' + auth.token
             }
         }
-        console.log("start fetching brokers")
         return fetch(`${apiHost}/api/trades/brokers`, fetch_cfg)
                 .then( (res) => {
                     if (res.status == 200) {
@@ -202,7 +201,6 @@ export function getProducts(broker) {
                 'Authorization': 'Bearer ' + auth.token
             }
         }
-        console.log("start fetching products")
         return fetch(`${apiHost}/api/products/${broker}`, fetch_cfg)
                 .then( (res) => {
                     if (res.status == 200) {
