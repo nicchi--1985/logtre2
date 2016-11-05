@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from '../../actions/actions';
+//import * as Actions from '../../redux/modules/';
 import { base_host } from '../../routes';
 import RaisedButton from 'material-ui/RaisedButton';
 import { commonStyle } from '../../config';
@@ -43,13 +43,13 @@ function mapStateToPorps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(Actions, dispatch)
-    }
-}
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         actions: bindActionCreators(Actions, dispatch)
+//     }
+// }
 
 export default connect(
-  mapStateToPorps,
-  mapDispatchToProps
+  mapStateToPorps
+  //mapDispatchToProps
 )(LoginPage)

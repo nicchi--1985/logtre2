@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from '../../actions/actions';
+import * as resourceActions from '../../redux/modules/resource';
 import ChartList from '../../components/ChartList'
 
 class ChartListPage extends Component {
@@ -20,13 +20,13 @@ class ChartListPage extends Component {
 
 function mapStateToPorps(state) {
     return {
-        products: state.products
+        products: state.resource.products
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(resourceActions, dispatch)
     }
 }
 

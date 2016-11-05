@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router'
 import cookie from 'react-cookie';
-import * as Actions from '../actions/actions';
+import * as authActions from '../redux/modules/auth';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -98,13 +98,13 @@ UserOnly.contextTypes = {
 function mapStateToPorps(state) {
     return {
         isAuthenticated: state.auth.token,
-        currentUser: state.user
+        currentUser: state.auth.user
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(authActions, dispatch)
     }
 }
 

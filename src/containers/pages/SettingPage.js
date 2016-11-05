@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import TradesUploadForm from '../../components/TradesUploadForm'
-import { uploadCSVFile, changeUploadForm } from '../../actions/actions'
+import { uploadCSVFile, changeUploadForm } from '../../redux/modules/import_trades'
 
 const contentStyle = {
     "padding": "10px 10px"
@@ -21,7 +21,7 @@ class SettingPage extends Component {
 
 function mapStateToPorps(state) {
     return {
-        uploadForm: state.uploadForm
+        uploadForm: state.import_trades.uploadForm
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from '../../actions/actions';
+import * as chartActions from '../../redux/modules/chart';
 import TraderAnalytics from '../../components/TraderAnalytics'
 
 class AnalyticsPage extends Component {
@@ -21,13 +21,13 @@ class AnalyticsPage extends Component {
 
 function mapStateToPorps(state) {
     return {
-        radarData: state.radarData
+        radarData: state.chart.radarData
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(chartActions, dispatch)
     }
 }
 

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import cookie from 'react-cookie';
-import * as Actions from '../actions/actions';
+import * as authActions from '../redux/modules/auth';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import { commonStyle } from '../config';
@@ -62,13 +62,13 @@ GuestOnly.contextTypes = {
 
 function mapStateToPorps(state) {
     return {
-        isAuthenticated: state.auth.token
+        isAuthenticated: state.auth.auth.token
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(authActions, dispatch)
     }
 }
 

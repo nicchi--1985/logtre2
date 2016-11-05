@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from '../../actions/actions';
+import * as resourceActions from '../../redux/modules/resource';
 import StockCompanyList from '../../components/StockCompanyList'
 import PerformanceSummary from '../../components/PerformanceSummary'
 
@@ -25,14 +25,14 @@ class TopPage extends Component {
 
 function mapStateToPorps(state) {
     return {
-        performanceSummary: state.performanceSummary,
-        brokers: state.brokers
+        performanceSummary: state.resource.performanceSummary,
+        brokers: state.resource.brokers
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(resourceActions, dispatch)
     }
 }
 
