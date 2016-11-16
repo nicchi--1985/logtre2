@@ -2,6 +2,7 @@ import { getApiHost } from '../../config'
 const apiHost = getApiHost()
 
 const RECEIVE_CHARTDATA = 'logtre/chart/RECEIVE_CHARTDATA';
+const RECEIVE_NIKKEIDATA = 'logtre/chart/RECEIVE_NIKKEIDATA';
 const RECEIVE_RADARDATA = 'logtre/chart/RECEIVE_RADARDATA';
 const COUNTDOWN_TERM = 'logtre/chart/COUNTDOWN_TERM';
 const COUNTUP_TERM = 'logtre/chart/COUNTUP_TERM';
@@ -10,6 +11,14 @@ const initial_state = {
     chartData: {
         data: [],
         time_unit: "month",
+        term: 1,
+        term_start: "",
+        term_end: "",
+        term_days: 180
+    },
+    nikkeiData: {
+        data_n: [],
+        time_unit_n: "month",
         term: 1,
         term_start: "",
         term_end: "",
@@ -25,6 +34,19 @@ export default function reducer(state=initial_state, action={}) {
                 chartData: {
                 data: action.payload.data,
                 time_unit: action.payload.time_unit,
+                term: state.chartData.term,
+                term_start: action.payload.term_start,
+                term_end: action.payload.term_end,
+                term_days: 180
+                }
+            })
+        case RECEIVE_NIKKEIDATA:
+            console.log('RECEIVE_NIKKEIDATA')
+            console.log(action.payload)
+            return Object.assign({}, state, {
+                nikkeiData: {
+                data_n: action.payload.data,
+                time_unit_n: action.payload.time_unit,
                 term: state.chartData.term,
                 term_start: action.payload.term_start,
                 term_end: action.payload.term_end,
@@ -69,6 +91,13 @@ function receiveChartData(data) {
     }
 }
 
+function receiveNikkeiData(data) {
+    return {
+        type: RECEIVE_NIKKEIDATA,
+        payload: data
+    }
+}
+
 function receiveRadarData(data) {
     return {
         type: RECEIVE_RADARDATA,
@@ -108,6 +137,30 @@ export function getChartData(broker, product, term) {
                     }
                 }).then( (data) => {
                     dispatch(receiveChartData(data));
+                })
+    }
+}
+
+export function getNikkeiData(start, end) {
+    return (dispatch, getState) => {
+        // do something
+        const { auth } = getState();
+        const fetch_cfg = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + auth.token
+            }
+        }
+        console.log(`start fetching nikkei data`)
+        return fetch(`${apiHost}/api/chart_data/nikkei?start=${start}&end=${end}`, fetch_cfg)
+                .then( (res) => {
+                    if (res.status == 200) {
+                        return res.json();
+                    } else {
+                        console.error("error occured geting products");
+                    }
+                }).then( (data) => {
+                    dispatch(receiveNikkeiData(data));
                 })
     }
 }

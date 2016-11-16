@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { commonStyle } from '../config'
-import { getTimeChartData, getTimeChartOptions } from '../config'
 
 export default class ChartCanvas extends Component {
     render() {
@@ -11,8 +10,11 @@ export default class ChartCanvas extends Component {
             graph = (<div></div>);
         } else {
             const Line = require('react-chartjs').Line
-            const { data, time_unit } = this.props.chartData
-            graph = (<Line data={getTimeChartData(data)} options={getTimeChartOptions(time_unit)} width="400" height="150"/>)
+            graph = (<Line data={this.props.chartData} 
+                           options={this.props.options} 
+                           maintainAspectRatio={false}
+                           width="400" 
+                           height="150"/>)
         }
         return (
             <div style={{width: "95%"}} >

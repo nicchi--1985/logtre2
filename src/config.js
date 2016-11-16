@@ -34,12 +34,13 @@ export const commonStyle = {
 }
 
 
-export function getTimeChartData(data=null) {
+export function getTimeChartData(data=null, data_n=null) {
     return {
         datasets: [
             {
                 label: "取引成績",
                 data: data,
+                yAxisID: "user_trade",
                 fill: false,
                 lineTension: 0.0,
                 strokeColor: "rgba(62, 253, 52,1)",
@@ -50,6 +51,28 @@ export function getTimeChartData(data=null) {
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
                 pointBorderColor: "rgba(62, 253, 52,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+            },{
+                label: "日経平均",
+                data: data_n,
+                yAxisID: "nikkei",
+                fill: false,
+                lineTension: 0.0,
+                strokeColor: "rgba(62, 253, 52,1)",
+                backgroundColor: "rgba(206,206,206,0.4)",
+                borderColor: "rgba(206,206,206,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(206,206,206,1)",
                 pointBackgroundColor: "#fff",
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
@@ -91,7 +114,10 @@ export function getTimeChartOptions(time_unit="month") {
         responsive: true,
         title:{
             display:true,
-            text:"Chart.js Time Scale"
+            text:""
+        },
+        layout: {
+            padding: 100
         },
         scales: {
             xAxes: [{
@@ -103,12 +129,24 @@ export function getTimeChartOptions(time_unit="month") {
                 }
             }],
             yAxes: [{
+                position: "left",
+                id: "user_trade",
                 scaleLabel: {
                     display: true,
                     labelString: '損益(円)'
                 },
                 ticks: {
+                    callback: function(label, index, labels) {
+                        return [label].toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,')
+                    },
                     beginAtZero: true
+                }
+            },{
+                position: "right",
+                id: "nikkei",
+                scaleLabel: {
+                    display: true,
+                    labelString: '日経平均(円)'
                 }
             }]
         },
