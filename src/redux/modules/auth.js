@@ -6,15 +6,17 @@ const SET_USER = 'logtre/auth/SET_USER';
 
 const initial_state = {
     token: null, 
-    username: null
+    user: {
+        id: null,
+        name: null
+    }
 }
 
 export default function reducer(state=initial_state, action={}) {
     switch (action.type) {
         case SET_TOKEN:
             return Object.assign({}, state, {
-                token: action.token, 
-                username: "success"
+                token: action.token
             })
         case SET_USER:
             return Object.assign({}, state, {

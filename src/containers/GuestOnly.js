@@ -62,7 +62,7 @@ GuestOnly.contextTypes = {
 
 function mapStateToPorps(state) {
     return {
-        isAuthenticated: state.auth.auth.token
+        isAuthenticated: state.auth.token
     }
 }
 

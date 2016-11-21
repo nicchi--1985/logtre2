@@ -7,8 +7,10 @@ import PerformanceSummary from '../../components/PerformanceSummary'
 
 class TopPage extends Component {
     componentWillMount() {
-        this.props.actions.getBrokers();
-        this.props.actions.getSummary();
+        if (this.props.isAuthenticated) {
+            this.props.actions.getBrokers();
+            this.props.actions.getSummary();
+        }
     }
     
     render() {
@@ -25,6 +27,7 @@ class TopPage extends Component {
 
 function mapStateToPorps(state) {
     return {
+        isAuthenticated: state.auth.token,
         performanceSummary: state.resource.performanceSummary,
         brokers: state.resource.brokers
     }
